@@ -10,11 +10,17 @@ function handleForm(){
     $('#js-puppyMaker').submit(event => {
         event.preventDefault();
         
-        let numberRequest = $('#js-numberRequest').val();
-        console.log(numberRequest); // Caputures input number
-        
-        for (let i=1; i <= numberRequest; i++){
+        if ($('#js-numberRequest').val() === ""){
+            let numberRequest = 3;
+            for (let i=1; i <= numberRequest; i++){
+                requestPuppy();
+                }
+        } else {
+            let numberRequest = $('#js-numberRequest').val();
+            console.log(numberRequest); // Caputures input number
+            for (let i=1; i <= numberRequest; i++){
             requestPuppy();
+            }
         }
     });
 }
