@@ -2,9 +2,7 @@ function requestPuppy(){
     // fetchs the API data
     fetch('https://dog.ceo/api/breeds/image/random')
         .then(response => response.json())
-        .then(responseJson => console.log(responseJson))
-        .then(responseJson => displayPuppies(responseJson))
-        .catch(error => alert('Something is not working...'));
+        .then(responseJson => displayPuppies(responseJson));
 }
 
 function handleForm(){
@@ -38,7 +36,6 @@ function displayPuppies(responseJson) {
     
 }
     
-
 handleForm();
 
 
