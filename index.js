@@ -15,12 +15,15 @@ function handleForm(){
             for (let i=1; i <= numberRequest; i++){
                 requestPuppy();
                 }
+        } else if ($('#js-numberRequest').val() < 1 || $('#js-numberRequest').val() > 50){
+            alert("Please choose a number between 1 and 50!");
         } else {
             let numberRequest = $('#js-numberRequest').val();
             console.log(numberRequest); // Caputures input number
             for (let i=1; i <= numberRequest; i++){
             requestPuppy();
             }
+            
         }
     });
 }
