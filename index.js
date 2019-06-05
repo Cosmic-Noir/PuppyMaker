@@ -1,3 +1,4 @@
+// Random puppy picture generator that designates number of pics
 function requestPuppy(){
     // fetchs the API data
     fetch('https://dog.ceo/api/breeds/image/random')
@@ -38,4 +39,20 @@ function displayPuppies(responseJson) {
     
 handleForm();
 
+
+// Breed specific generator that displays one picture
+function requestBreed(){
+    // fetchs the API data
+    fetch('https://dog.ceo/api/breed/hound/images')
+        .then(response => response.json())
+        .then(responseJson => displayPuppies(responseJson));
+}
+
+function handleBreedForm() {
+    $('#js-breedMaker').submit(event => {
+        event.preventDefault();
+        requestBreed();
+
+    })
+}
 
