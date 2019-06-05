@@ -41,18 +41,30 @@ handleForm();
 
 
 // Breed specific generator that displays one picture
-function requestBreed(){
+function requestBreed(selection){
     // fetchs the API data
-    fetch('https://dog.ceo/api/breed/hound/images')
+
+    fetch(`https://dog.ceo/api/breed/${selection}/images/random`)
         .then(response => response.json())
-        .then(responseJson => displayPuppies(responseJson));
+        .then(responseJson => displayBreed(responseJson));
 }
 
 function handleBreedForm() {
     $('#js-breedMaker').submit(event => {
         event.preventDefault();
-        requestBreed();
+        let selection = $('#js-breed').val();
+        console.log(selection);
+        requestBreed(selection);
 
     })
 }
 
+function displayBreed(responseJson) {
+    console.log(responseJson.message);
+    $('.displayHere').append(
+        `<img src="${responseJson.message}" class="puppyImage">`
+    );
+    
+}
+
+handleBreedForm();
