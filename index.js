@@ -61,10 +61,10 @@ function handleBreedForm() {
 
 function displayBreed(responseJson) {
     console.log(responseJson.message);
-    $('.displayHere').append(
-        `<img src="${responseJson.message}" class="puppyImage">`
-    );
-    
+    $('.breedPic').replaceWith(
+        `<img src="${responseJson.message}" class="breedPic">`
+    )
+    $('.displayBreed').removeClass('hidden');
 }
 
 handleBreedForm();
