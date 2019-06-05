@@ -46,7 +46,8 @@ function requestBreed(selection){
 
     fetch(`https://dog.ceo/api/breed/${selection}/images/random`)
         .then(response => response.json())
-        .then(responseJson => displayBreed(responseJson));
+        .then(responseJson => displayBreed(responseJson))
+        .catch(error => alert('Something went wrong. Try again later.'));
 }
 
 function handleBreedForm() {
@@ -54,17 +55,24 @@ function handleBreedForm() {
         event.preventDefault();
         let selection = $('#js-breed').val();
         console.log(selection);
-        requestBreed(selection);
-
+        if (selection === ""){
+            alert('Please enter a breed of your choice.');
+        } else {
+            requestBreed(selection);
+        }
     })
 }
 
 function displayBreed(responseJson) {
     console.log(responseJson.message);
-    $('.breedPic').replaceWith(
-        `<img src="${responseJson.message}" class="breedPic">`
-    )
-    $('.displayBreed').removeClass('hidden');
+    if (responseJson.code){
+        alert(`${responseJson.message}`);
+    } else {
+        $('.breedPic').replaceWith(
+            `<img src="${responseJson.message}" class="breedPic">`
+        )
+        $('.displayBreed').removeClass('hidden');
+    }
 }
 
 handleBreedForm();
